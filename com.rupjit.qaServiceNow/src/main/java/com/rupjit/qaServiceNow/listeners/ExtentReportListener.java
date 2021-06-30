@@ -15,6 +15,7 @@ import com.aventstack.extentreports.Status;
 import com.rupjit.qaServiceNow.base.DriverFactory;
 import com.rupjit.qaServiceNow.base.ExtentFactory;
 import com.rupjit.qaServiceNow.base.ExtentReportSetup;
+import com.rupjit.qaServiceNow.base.MyLogger;
 import com.rupjit.qaServiceNow.base.TestBase;
 
 import io.qameta.allure.Attachment;
@@ -28,10 +29,14 @@ public void onTestStart(ITestResult result) {
 	//before each test case
 	test = report.createTest(result.getMethod().getMethodName());
 	ExtentFactory.getInstance().setExtent(test);
+	MyLogger.startTestCase(result.getMethod().getMethodName());
+
 }
 
 public void onTestSuccess(ITestResult result) {
 	ExtentFactory.getInstance().getExtentTest().log(Status.PASS, "Test Case: "+result.getMethod().getMethodName()+ " is Passed.");
+	MyLogger.debug("Test Case: "+result.getMethod().getMethodName()+ " is Passed.");
+
 	//ExtentFactory.getInstance().removeExtentObject();
 	//add screenshot for failed test.
 		String screenshotPath="";
@@ -64,6 +69,7 @@ public void onTestSuccess(ITestResult result) {
 public void onTestFailure(ITestResult result) {
 	ExtentFactory.getInstance().getExtentTest().log(Status.FAIL, "Test Case: "+result.getMethod().getMethodName()+ " is Failed.");
 	ExtentFactory.getInstance().getExtentTest().log(Status.FAIL, result.getThrowable());
+	MyLogger.debug("Test Case: "+result.getMethod().getMethodName()+ " is Failed.");
 	
 	//add screenshot for failed test.
 	String screenshotPath="";

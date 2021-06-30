@@ -80,11 +80,6 @@
   </dependencies>
    
 <build>
-	<resources>
-			<resource>
-				<directory>${project.basedir}/../com.rupjit.qaSelenium/src/test/resources</directory>
-			</resource>
-		</resources>
     <plugins>
     
     	<!-- Compiler plug-in -->
@@ -108,7 +103,7 @@
                 <argLine>
                     -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                 </argLine>
-                <log.directory>${project.basedir}\src\main\java\com\rupjit\qaSelenium\log</log.directory>
+                <log.directory>${project.basedir}\target\log</log.directory>
             </configuration>
             <dependencies>
                 <dependency>

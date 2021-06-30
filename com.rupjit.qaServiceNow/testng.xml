@@ -3,15 +3,14 @@
 <suite name="Suite">
 
 	<listeners>
-	<listener class-name="com.rupjit.qaSelenium.listeners.ExtentReportListener"/>
-	<!-- <listener class-name="com.rupjit.qaSelenium.listeners.AllureListener"/> -->
-	<listener class-name="com.rupjit.qaSelenium.listeners.AnnotationTransformer"/>
+	<listener class-name="com.rupjit.qaServiceNow.listeners.ExtentReportListener"/>
+	<!-- <listener class-name="com.rupjit.qaServiceNow.listeners.AllureListener"/> -->
+	<listener class-name="com.rupjit.qaServiceNow.listeners.AnnotationTransformer"/>
 	</listeners>
 	
-  <test thread-count="5" name="Test" parallel="methods">
+  <test name="Test">
     <classes>
       <class name="com.rupjit.qaServiceNow.testcases.LoginPageTest"/>
-      <class name="com.rupjit.qaServiceNow.base.TestBase"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

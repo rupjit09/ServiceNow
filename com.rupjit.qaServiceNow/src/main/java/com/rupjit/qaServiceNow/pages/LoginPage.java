@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.rupjit.qaServiceNow.base.DriverFactory;
+import com.rupjit.qaServiceNow.base.MyLogger;
 import com.rupjit.qaServiceNow.base.TestBase;
 
 
@@ -30,6 +31,7 @@ public class LoginPage extends TestBase{
 	
 	public HomePage login(String un,String pwd) throws Exception{
 		DriverFactory.getInstance().getDriver().switchTo().frame("gsft_main");
+		MyLogger.debug("login from pageclass method");
 		username.sendKeys(un);
 		password.sendKeys(pwd);
 		waitForVisibilityOfElement(loginButton);
