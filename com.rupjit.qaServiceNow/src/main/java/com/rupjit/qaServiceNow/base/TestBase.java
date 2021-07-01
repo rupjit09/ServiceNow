@@ -24,6 +24,7 @@ import org.testng.annotations.BeforeMethod;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.paulhammant.ngwebdriver.NgWebDriver;
 import com.rupjit.qaServiceNow.utils.Xls_Reader;
 
 
@@ -77,6 +78,7 @@ public class TestBase {
 		driver.manage().timeouts().setScriptTimeout(120, TimeUnit.SECONDS);
 		driver.manage().deleteAllCookies();
 		driver.navigate().to(url);
+		getNgWebDriverInstance().waitForAngularRequestsToFinish();
 	}
 		
 		@AfterMethod
@@ -88,6 +90,11 @@ public class TestBase {
 	public JavascriptExecutor getJSExecutorInstance() {
 		JavascriptExecutor js=(JavascriptExecutor) DriverFactory.getInstance().getDriver();
 		return js;
+	}
+	
+	public NgWebDriver getNgWebDriverInstance() {
+		NgWebDriver ngDriver=new NgWebDriver(getJSExecutorInstance());
+		return ngDriver;
 	}
 	
 	public void moveMouseTo(WebElement element) {
