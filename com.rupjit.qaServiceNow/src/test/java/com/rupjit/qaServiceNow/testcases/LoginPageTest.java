@@ -22,7 +22,7 @@ public class LoginPageTest extends TestBase{
 	
 	@Test
 	public void loginPageTitleTest() {
-		String title=loginpage.validateLoginPageTitle();
+		String title=loginpage.getLoginPageTitle();
 		MyLogger.debug("executing first testcase");
 		Assert.assertEquals(title, "ServiceNow","Login page title not matching");
 	}

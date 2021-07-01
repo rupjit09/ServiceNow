@@ -25,7 +25,7 @@ public class LoginPage extends TestBase{
 		PageFactory.initElements(DriverFactory.getInstance().getDriver(), this);
 	}
 	
-	public String validateLoginPageTitle() {
+	public String getLoginPageTitle() {
 		return DriverFactory.getInstance().getDriver().getTitle();
 	}
 	

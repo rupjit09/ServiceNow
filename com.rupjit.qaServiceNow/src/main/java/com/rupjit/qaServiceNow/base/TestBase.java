@@ -30,7 +30,7 @@ import com.rupjit.qaServiceNow.utils.Xls_Reader;
 
 public class TestBase {
 
-	public static MyLogger log;
+	public static MyLogger MyLogger;
 	//public static Properties config;
 	public static Xls_Reader suitexls;
 	public static Xls_Reader Asuitexls;
@@ -47,19 +47,19 @@ public class TestBase {
 		if(!isInitialized) {
 		
 		//initialize config.properties file
-		log.debug("Loading Config.properties file...");
+		MyLogger.debug("Loading Config.properties file...");
 		prop=new Properties();
 		FileInputStream ip=new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\com\\rupjit\\qaServiceNow\\config\\config.properties");
 		prop.load(ip);
-		log.debug("Config.properties file loaded");
+		MyLogger.debug("Config.properties file loaded");
 		
 		//Initializing XLS file
-		log.debug("Loading XLS file...");
+		MyLogger.debug("Loading XLS file...");
 		//suitexls=new Xls_Reader(System.getProperty("user.dir")+"\\src\\main\\java\\com\\rupjit\\automationqa\\data\\Suite.xlsx");
 		//Asuitexls=new Xls_Reader(System.getProperty("user.dir")+"\\src\\main\\java\\com\\rupjit\\automationqa\\data\\A suite.xlsx");
 		//Bsuitexls=new Xls_Reader(System.getProperty("user.dir")+"\\src\\main\\java\\com\\rupjit\\automationqa\\data\\B suite.xlsx");
 		//Csuitexls=new Xls_Reader(System.getProperty("user.dir")+"\\src\\main\\java\\com\\rupjit\\automationqa\\data\\C suite.xlsx");
-		log.debug("XLS files loaded");
+		MyLogger.debug("XLS files loaded");
 		isInitialized=true;
 		}}
 		
