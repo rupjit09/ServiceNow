@@ -13,6 +13,13 @@
   
   <dependencies>
   
+  <!-- https://mvnrepository.com/artifact/com.paulhammant/ngwebdriver -->
+<dependency>
+    <groupId>com.paulhammant</groupId>
+    <artifactId>ngwebdriver</artifactId>
+    <version>1.1.6</version>
+</dependency>
+  
   <!-- Seleninum Dependency -->
   <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
