@@ -21,8 +21,11 @@ public class OrganisationUsers extends TestBase{
 		return DriverFactory.getInstance().getDriver().getTitle();
 	}
 	
-	public void addNewUser() {
+	public AddNewUserForm clickAndMoveTOAddNewUser() {
 		DriverFactory.getInstance().getDriver().switchTo().frame("gsft_main");
-		addnewUser.click();		
+		addnewUser.click();
+		return new AddNewUserForm();
 	}
+	
+	
 }
