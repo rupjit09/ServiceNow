@@ -9,6 +9,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
@@ -78,8 +79,18 @@ public class TestBase {
 		driver.manage().timeouts().setScriptTimeout(120, TimeUnit.SECONDS);
 		driver.manage().deleteAllCookies();
 		driver.navigate().to(url);
-		getNgWebDriverInstance().waitForAngularRequestsToFinish();
+		if(driver.getTitle().equalsIgnoreCase("Instance Hibernating page"))
+			activatefromHibernateMode(driver);
+		getNgWebDriverInstance(driver).waitForAngularRequestsToFinish();
 	}
+		
+		
+	private void activatefromHibernateMode(WebDriver driver) {
+			driver.navigate().to("https://signon.service-now.com/ssologin.do");
+			driver.findElement(By.xpath("//input[@id='username']")).sendKeys("rupjit09@gmail.com");
+			driver.findElement(By.xpath("//button[@id='usernameSubmitButton']")).click();
+			//some more code required
+		}
 		
 		@AfterMethod
 		public void tearDown() {
@@ -87,51 +98,51 @@ public class TestBase {
 		}
 
 
-	public JavascriptExecutor getJSExecutorInstance() {
-		JavascriptExecutor js=(JavascriptExecutor) DriverFactory.getInstance().getDriver();
+		synchronized public JavascriptExecutor getJSExecutorInstance(WebDriver driver) {
+		JavascriptExecutor js=(JavascriptExecutor) driver;
 		return js;
 	}
 	
-	public NgWebDriver getNgWebDriverInstance() {
-		NgWebDriver ngDriver=new NgWebDriver(getJSExecutorInstance());
+		public NgWebDriver getNgWebDriverInstance(WebDriver driver) {
+		NgWebDriver ngDriver=new NgWebDriver(getJSExecutorInstance(driver));
 		return ngDriver;
 	}
 	
-	public void moveMouseTo(WebElement element) {
-		Actions action1=new Actions(DriverFactory.getInstance().getDriver());
+		public void moveMouseTo(WebElement element,WebDriver driver) {
+		Actions action1=new Actions(driver);
 		action1.moveToElement(element).build().perform();
 	}
 
-	public void dragAndDrop(WebElement source,int xOffset,int yOffset) {
-		Actions action2=new Actions(DriverFactory.getInstance().getDriver());
+		public void dragAndDrop(WebElement source,int xOffset,int yOffset,WebDriver driver) {
+		Actions action2=new Actions(driver);
 		action2.moveToElement(source).build().perform();
 		action2.dragAndDropBy(source, xOffset, yOffset).build().perform();
 	}
 
-	public void dragAndDrop(WebElement source,WebElement target) {
-		Actions action3=new Actions(DriverFactory.getInstance().getDriver());
+		public void dragAndDrop(WebElement source,WebElement target,WebDriver driver) {
+		Actions action3=new Actions(driver);
 		action3.moveToElement(source).build().perform();
 		action3.dragAndDrop(source, target).build().perform();
 	}
 
-	public void waitForVisibilityOfElement(WebElement element) {
-		WebDriverWait wait1=new WebDriverWait(DriverFactory.getInstance().getDriver(), 30);
+		public void waitForVisibilityOfElement(WebElement element,WebDriver driver) {
+		WebDriverWait wait1=new WebDriverWait(driver, 30);
 		wait1.until(ExpectedConditions.visibilityOf(element));
 	}
-	public void waitForElementToBeClickable(WebElement element) {
-		WebDriverWait wait2=new WebDriverWait(DriverFactory.getInstance().getDriver(), 30);
+		public void waitForElementToBeClickable(WebElement element,WebDriver driver) {
+		WebDriverWait wait2=new WebDriverWait(driver, 30);
 		wait2.until(ExpectedConditions.elementToBeClickable(element));
 	}
-	public void waitForInvisibilityOfElement(WebElement element) {
-		WebDriverWait wait3=new WebDriverWait(DriverFactory.getInstance().getDriver(), 30);
+		public void waitForInvisibilityOfElement(WebElement element,WebDriver driver) {
+		WebDriverWait wait3=new WebDriverWait(driver, 30);
 		wait3.until(ExpectedConditions.invisibilityOf(element));
 	}
-	public void javaScriptClick(WebElement element) throws Exception {
+		public void javaScriptClick(WebElement element,WebDriver driver) throws Exception {
 		try {
 			if (element.isEnabled() && element.isDisplayed()) {
 				System.out.println("Clicking on element with using java script click");
 
-				((JavascriptExecutor) DriverFactory.getInstance().getDriver()).executeScript("arguments[0].click();", element);
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 			} else {
 				System.out.println("Unable to click on element");
 			}
@@ -145,7 +156,8 @@ public class TestBase {
 	}
 
 	
-	public static String getScreenhot(WebDriver driver,String screenshotName) throws Exception {
+
+		public static String getScreenhot(WebDriver driver,String screenshotName) throws Exception {
 		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);

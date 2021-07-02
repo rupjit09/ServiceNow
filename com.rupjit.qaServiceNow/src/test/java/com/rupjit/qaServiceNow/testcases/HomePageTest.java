@@ -29,24 +29,24 @@ public class HomePageTest extends TestBase{
 	
 	@Test
 	public void navigateToOrganisation_USERSpage() throws InterruptedException {
-		homepage.filterBar("user");
-		homepage.clickAndMoveTo(HomePageOptions.ORGANISATION_USERS);
+		new HomePage().filterBar("user");
+		new HomePage().clickAndMoveTo(HomePageOptions.ORGANISATION_USERS);
 		String title=new OrganisationUsers().getOrganisationUsersPageTitle();
 		Assert.assertEquals(title, "Users | ServiceNow","Page title not matching");
 		}
 	
 	@Test
 	public void navigateToIncident_CreateNewpage() throws InterruptedException {
-		homepage.filterBar("Incident");
-		homepage.clickAndMoveTo(HomePageOptions.CREATE_NEW_INCIDENT);
+		new HomePage().filterBar("Incident");
+		new HomePage().clickAndMoveTo(HomePageOptions.CREATE_NEW_INCIDENT);
 		String title=new Incident_CreateNew().getIncident_CreateNewPageTitle();
 		Assert.assertTrue(title.contains("| Incident | ServiceNow"),"Page title not matching");
 	}
 	
-	@Test
+	@Test()
 	public void navigateToSelfService_MyApprovalpage() throws InterruptedException {
-		homepage.filterBar("Self-Service");
-		homepage.clickAndMoveTo(HomePageOptions.SELFSERVICE_MYAPPROVAL);
+		new HomePage().filterBar("Self-Service");
+		new HomePage().clickAndMoveTo(HomePageOptions.SELFSERVICE_MYAPPROVAL);
 		String title=new SelfService_MyApproval().getSelfService_MyApprovalPageTitle();
 		Assert.assertEquals(title, "Approvals | ServiceNow","Page title not matching");
 	}

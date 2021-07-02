@@ -35,23 +35,23 @@ public class HomePage extends TestBase{
 	}
 	
 	public void filterBar(String filterString) {
-		getNgWebDriverInstance().waitForAngularRequestsToFinish();
+		new TestBase().getNgWebDriverInstance(DriverFactory.getInstance().getDriver()).waitForAngularRequestsToFinish();
 		filterBar.sendKeys(filterString);
 	}
 	
 	public Object clickAndMoveTo(HomePageOptions option) {
 		switch (option.toString().toUpperCase()) {
 		case "ORGANISATION_USERS":
-			waitForVisibilityOfElement(Organisation_Users);
+			new TestBase().waitForVisibilityOfElement(Organisation_Users,DriverFactory.getInstance().getDriver());
 			Organisation_Users.click();
 			return new OrganisationUsers();
 		
 		case "CREATE_NEW_INCIDENT":
-			waitForVisibilityOfElement(Incident_CreateNew);
+			new TestBase().waitForVisibilityOfElement(Incident_CreateNew,DriverFactory.getInstance().getDriver());
 			Incident_CreateNew.click();
 			return new Incident_CreateNew();
 		case "SELFSERVICE_MYAPPROVAL":
-			waitForVisibilityOfElement(SelfService_MyApproval);
+			new TestBase().waitForVisibilityOfElement(SelfService_MyApproval,DriverFactory.getInstance().getDriver());
 			SelfService_MyApproval.click();
 			return new SelfService_MyApproval();
 		default :

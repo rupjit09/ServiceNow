@@ -34,7 +34,7 @@ public class LoginPage extends TestBase{
 		MyLogger.debug("login from pageclass method");
 		username.sendKeys(un);
 		password.sendKeys(pwd);
-		waitForVisibilityOfElement(loginButton);
+		new TestBase().waitForVisibilityOfElement(loginButton,DriverFactory.getInstance().getDriver());
 		loginButton.click();
 		DriverFactory.getInstance().getDriver().switchTo().defaultContent();
 		return new HomePage();

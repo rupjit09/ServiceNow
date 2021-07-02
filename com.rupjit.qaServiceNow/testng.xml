@@ -8,9 +8,10 @@
 	<listener class-name="com.rupjit.qaServiceNow.listeners.AnnotationTransformer"/>
 	</listeners>
 	
-  <test name="Test">
+  <test name="Test" parallel="methods" thread-count="3">
     <classes>
-      <class name="com.rupjit.qaServiceNow.testcases.LoginPageTest"/>
+      <!-- <class name="com.rupjit.qaServiceNow.testcases.LoginPageTest"/> -->
+      <class name="com.rupjit.qaServiceNow.testcases.HomePageTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
