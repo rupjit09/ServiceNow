@@ -10,8 +10,9 @@
 	
   <test name="Test" parallel="methods" thread-count="3">
     <classes>
-      <!-- <class name="com.rupjit.qaServiceNow.testcases.LoginPageTest"/> -->
+      <class name="com.rupjit.qaServiceNow.testcases.LoginPageTest"/>
       <class name="com.rupjit.qaServiceNow.testcases.HomePageTest"/>
-    </classes>
+      <class name="com.rupjit.qaServiceNow.testcases.OrganisationUsersTest"/>
+      </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

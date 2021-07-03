@@ -20,12 +20,6 @@ public class AddNewUserFormTest extends TestBase {
 		
 	 }
 	
-	@Test
-	public void createUser() {
-		new OrganisationUsers().deleteUser("rupjit11");
-		addNewUserForm.fillFormDetailsAndSubmit("rupjit12", "rupjit12", "das", "rup123");
-		boolean userAvailable=new OrganisationUsers().isUserAvailable("rupjit12");
-		Assert.assertEquals(true, userAvailable,"User rupjit09 not available");
-	}
+	
 
 }

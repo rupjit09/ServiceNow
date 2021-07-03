@@ -37,6 +37,7 @@ public class OrganisationUsers extends TestBase{
 		DriverFactory.getInstance().getDriver().switchTo().defaultContent();
 		DriverFactory.getInstance().getDriver().switchTo().frame("gsft_main");
 		System.out.println("Clicking on Add NEW user button");
+		addnewUser=DriverFactory.getInstance().getDriver().findElement(By.xpath("//button[text()='New']"));//this is added here again to avoid stale element exception
 		waitForElementToBeClickable(addnewUser, DriverFactory.getInstance().getDriver());
 		addnewUser.click();
 		return new AddNewUserForm();
@@ -62,7 +63,6 @@ public class OrganisationUsers extends TestBase{
 	}
 	
 	public void deleteUser(String userId) {
-		//System.out.println("User Availability "+new OrganisationUsers().isUserAvailable(userId));
 		if(new OrganisationUsers().isUserAvailable(userId)) {
 			System.out.println(userId+" is available so deleting");
 			DriverFactory.getInstance().getDriver().switchTo().defaultContent();
@@ -72,6 +72,7 @@ public class OrganisationUsers extends TestBase{
 		Select select=new Select(DriverFactory.getInstance().getDriver().findElement(By.xpath("//select[contains(@id,'labelAction')]")));
 		select.selectByVisibleText("Delete");
 		DriverFactory.getInstance().getDriver().findElement(By.xpath("//button[@id='ok_button']")).click();
+		waitForInvisibilityOfElement(DriverFactory.getInstance().getDriver().findElement(By.xpath("//button[@id='ok_button']")), DriverFactory.getInstance().getDriver());
 		} else
 			System.out.println(userId+" not available");
 	}
