@@ -42,15 +42,18 @@ public class HomePage extends TestBase{
 	public Object clickAndMoveTo(HomePageOptions option) {
 		switch (option.toString().toUpperCase()) {
 		case "ORGANISATION_USERS":
+			new HomePage().filterBar("Organization");
 			new TestBase().waitForVisibilityOfElement(Organisation_Users,DriverFactory.getInstance().getDriver());
 			Organisation_Users.click();
 			return new OrganisationUsers();
 		
 		case "CREATE_NEW_INCIDENT":
+			new HomePage().filterBar("Incident");
 			new TestBase().waitForVisibilityOfElement(Incident_CreateNew,DriverFactory.getInstance().getDriver());
 			Incident_CreateNew.click();
 			return new Incident_CreateNew();
 		case "SELFSERVICE_MYAPPROVAL":
+			new HomePage().filterBar("Self-Service");
 			new TestBase().waitForVisibilityOfElement(SelfService_MyApproval,DriverFactory.getInstance().getDriver());
 			SelfService_MyApproval.click();
 			return new SelfService_MyApproval();

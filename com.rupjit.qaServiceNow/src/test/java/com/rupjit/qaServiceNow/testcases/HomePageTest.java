@@ -29,7 +29,6 @@ public class HomePageTest extends TestBase{
 	
 	@Test
 	public void navigateToOrganisation_USERSpage() throws InterruptedException {
-		new HomePage().filterBar("user");
 		new HomePage().clickAndMoveTo(HomePageOptions.ORGANISATION_USERS);
 		String title=new OrganisationUsers().getOrganisationUsersPageTitle();
 		Assert.assertEquals(title, "Users | ServiceNow","Page title not matching");
@@ -37,7 +36,6 @@ public class HomePageTest extends TestBase{
 	
 	@Test
 	public void navigateToIncident_CreateNewpage() throws InterruptedException {
-		new HomePage().filterBar("Incident");
 		new HomePage().clickAndMoveTo(HomePageOptions.CREATE_NEW_INCIDENT);
 		String title=new Incident_CreateNew().getIncident_CreateNewPageTitle();
 		Assert.assertTrue(title.contains("| Incident | ServiceNow"),"Page title not matching");
@@ -45,7 +43,6 @@ public class HomePageTest extends TestBase{
 	
 	@Test()
 	public void navigateToSelfService_MyApprovalpage() throws InterruptedException {
-		new HomePage().filterBar("Self-Service");
 		new HomePage().clickAndMoveTo(HomePageOptions.SELFSERVICE_MYAPPROVAL);
 		String title=new SelfService_MyApproval().getSelfService_MyApprovalPageTitle();
 		Assert.assertEquals(title, "Approvals | ServiceNow","Page title not matching");

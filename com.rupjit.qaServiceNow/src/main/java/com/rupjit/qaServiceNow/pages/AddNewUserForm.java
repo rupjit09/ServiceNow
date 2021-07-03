@@ -35,7 +35,6 @@ public class AddNewUserForm extends TestBase{
 	}
 	
 	public void fillFormDetailsAndSubmit(String userName,String firstname,String lastName,String password) {
-		DriverFactory.getInstance().getDriver().switchTo().frame("gsft_main");
 		user_Id_textInputBox.sendKeys(userName);
 		firstName_textInputBox.sendKeys(firstname);
 		lastName_textInputBox.sendKeys(lastName);
