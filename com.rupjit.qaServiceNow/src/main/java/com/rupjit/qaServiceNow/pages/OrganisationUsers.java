@@ -1,5 +1,6 @@
 package com.rupjit.qaServiceNow.pages;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -51,7 +52,7 @@ public class OrganisationUsers extends TestBase{
 			DriverFactory.getInstance().getDriver().findElement(By.xpath("//th[@name='search']//button")).click();
 		userIdSearchBox.clear();
 		userIdSearchBox.sendKeys(userId,Keys.ENTER);
-		DriverFactory.getInstance().getDriver().manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+		DriverFactory.getInstance().getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
 		boolean userAvailable = false;
 		try {
 		userAvailable=DriverFactory.getInstance().getDriver().findElement(By.xpath("//tbody[@class='list2_body']/descendant::a[text()='"+userId+"']")).isDisplayed();

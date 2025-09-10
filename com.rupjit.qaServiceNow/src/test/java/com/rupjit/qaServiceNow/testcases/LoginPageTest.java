@@ -24,7 +24,7 @@ public class LoginPageTest extends TestBase{
 	public void loginPageTitleTest() {
 		String title=loginpage.getLoginPageTitle();
 		MyLogger.debug("executing first testcase");
-		Assert.assertEquals(title, "ServiceNow","Login page title not matching");
+		Assert.assertEquals(title, "Log in | ServiceNow","Login page title not matching");
 	}
 	
 	@Test

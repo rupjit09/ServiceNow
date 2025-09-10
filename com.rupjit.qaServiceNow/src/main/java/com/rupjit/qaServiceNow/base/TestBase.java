@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -50,7 +51,7 @@ public class TestBase {
 		//initialize config.properties file
 		MyLogger.debug("Loading Config.properties file...");
 		prop=new Properties();
-		FileInputStream ip=new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\com\\rupjit\\qaServiceNow\\config\\config.properties");
+		FileInputStream ip=new FileInputStream(System.getProperty("user.dir")+"\\com.rupjit.qaServiceNow\\src\\main\\java\\com\\rupjit\\qaServiceNow\\config\\config.properties");
 		prop.load(ip);
 		MyLogger.debug("Config.properties file loaded");
 		
@@ -74,9 +75,9 @@ public class TestBase {
 		
 		
 		driver.manage().window().maximize();
-		driver.manage().timeouts().pageLoadTimeout(Long.parseLong(prop.getProperty("page_load_timeout")), TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(Long.parseLong(prop.getProperty("implicit_wait")), TimeUnit.SECONDS);
-		driver.manage().timeouts().setScriptTimeout(120, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(Long.parseLong(prop.getProperty("page_load_timeout"))));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(prop.getProperty("implicit_wait"))));
+		driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(120));
 		driver.manage().deleteAllCookies();
 		driver.navigate().to(url);
 		if(driver.getTitle().equalsIgnoreCase("Instance Hibernating page"))
@@ -126,15 +127,15 @@ public class TestBase {
 	}
 
 		public void waitForVisibilityOfElement(WebElement element,WebDriver driver) {
-		WebDriverWait wait1=new WebDriverWait(driver, 30);
+		WebDriverWait wait1=new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait1.until(ExpectedConditions.visibilityOf(element));
 	}
 		public void waitForElementToBeClickable(WebElement element,WebDriver driver) {
-		WebDriverWait wait2=new WebDriverWait(driver, 30);
+		WebDriverWait wait2=new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait2.until(ExpectedConditions.elementToBeClickable(element));
 	}
 		public void waitForInvisibilityOfElement(WebElement element,WebDriver driver) {
-		WebDriverWait wait3=new WebDriverWait(driver, 30);
+		WebDriverWait wait3=new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait3.until(ExpectedConditions.invisibilityOf(element));
 	}
 		public void javaScriptClick(WebElement element,WebDriver driver) throws Exception {

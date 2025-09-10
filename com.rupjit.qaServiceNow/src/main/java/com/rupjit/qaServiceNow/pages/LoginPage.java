@@ -30,7 +30,7 @@ public class LoginPage extends TestBase{
 	}
 	
 	public HomePage login(String un,String pwd) throws Exception{
-		DriverFactory.getInstance().getDriver().switchTo().frame("gsft_main");
+		DriverFactory.getInstance().getDriver();//.switchTo().frame("gsft_main");
 		MyLogger.debug("login from pageclass method");
 		username.sendKeys(un);
 		password.sendKeys(pwd);
